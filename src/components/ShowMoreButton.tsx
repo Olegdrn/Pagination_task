@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { BlogContext } from "../context/BlogContext";
+import { BlogContext } from "../App";
 
 export const ShowMoreButton: React.FC = () => {
   const { setPostAmount } = useContext(BlogContext);

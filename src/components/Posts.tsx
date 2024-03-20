@@ -3,7 +3,7 @@ import { UseFetch } from "../hooks/useFetch";
 import { useInView } from "react-intersection-observer";
 import { Link } from "react-router-dom";
 import { Post } from "../../types";
-import { BlogContext } from "../context/BlogContext";
+import { BlogContext } from "../App";
 
 export const Posts: React.FC = () => {
   const { scrollAmount, setScrollAmount, postAmount, setPostAmount } =

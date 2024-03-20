@@ -1,21 +1,39 @@
-import React, { useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 import "./App.css";
 import { Posts } from "./components/Posts";
 import { ShowMoreButton } from "./components/ShowMoreButton";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Post } from "./components/Post/Post";
-import { BlogContext, BlogContextProvider } from "./context/BlogContext";
+
+interface BlogContextType {
+  scrollAmount: number;
+  postAmount: number;
+  setScrollAmount: React.Dispatch<React.SetStateAction<number>>;
+  setPostAmount: React.Dispatch<React.SetStateAction<number>>;
+}
+export const BlogContext = createContext({} as BlogContextType);
 
 function App() {
-  const { scrollAmount } = useContext(BlogContext);
   console.log("App");
+  const [scrollAmount, setScrollAmount] = useState<number>(0);
+  const [postAmount, setPostAmount] = useState<number>(10);
+
   return (
-    <BlogContextProvider>
+    <BlogContext.Provider
+      value={{ scrollAmount, postAmount, setScrollAmount, setPostAmount }}
+    >
       <div className="App">
         <BrowserRouter>
-          <header className="App-header">
-            <h2>Posts</h2>
-          </header>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <header className="App-header">
+                  <h2>Posts</h2>
+                </header>
+              }
+            />
+          </Routes>
           <Routes>
             <Route path="/" element={<Posts />} />
             <Route path="/post/:id" element={<Post />} />
@@ -28,7 +46,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </div>
-    </BlogContextProvider>
+    </BlogContext.Provider>
   );
 }
 

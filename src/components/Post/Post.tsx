@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { UseFetch } from "../../hooks/useFetch";
 import { Post as PostT } from "../../../types";
+import styles from "./Post.module.scss";
 
 export const Post: React.FC = () => {
   const { id } = useParams();
@@ -13,8 +14,8 @@ export const Post: React.FC = () => {
   return (
     <>
       {data !== null ? (
-        <div className="Post">
-          <h3>{data.body}</h3>
+        <div className={styles.Post}>
+          <h3>{data.id}</h3>
           <p>{data.title}</p>
           <p>{data.body}</p>
         </div>
