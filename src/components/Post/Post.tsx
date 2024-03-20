@@ -12,7 +12,7 @@ export const Post: React.FC = () => {
 
   return (
     <>
-      {typeof data === "object" ? (
+      {data !== null ? (
         <div className="Post">
           <h3>{data.body}</h3>
           <p>{data.title}</p>

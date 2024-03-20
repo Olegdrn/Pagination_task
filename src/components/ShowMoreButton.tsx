@@ -1,9 +1,8 @@
-interface ShowMoreButtonProps {
-  setPostAmount: React.Dispatch<React.SetStateAction<number>>;
-}
-export const ShowMoreButton: React.FC<ShowMoreButtonProps> = ({
-  setPostAmount,
-}) => {
+import { useContext } from "react";
+import { BlogContext } from "../context/BlogContext";
+
+export const ShowMoreButton: React.FC = () => {
+  const { setPostAmount } = useContext(BlogContext);
   console.log("Button");
   return (
     <>

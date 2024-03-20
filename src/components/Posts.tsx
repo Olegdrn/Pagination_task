@@ -1,17 +1,14 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { UseFetch } from "../hooks/useFetch";
 import { useInView } from "react-intersection-observer";
 import { Link } from "react-router-dom";
 import { Post } from "../../types";
+import { BlogContext } from "../context/BlogContext";
 
-interface PostProps {
-  scrollAmount: number;
-  setScrollAmount: React.Dispatch<React.SetStateAction<number>>;
-  postAmount: number;
-  setPostAmount: React.Dispatch<React.SetStateAction<number>>;
-}
+export const Posts: React.FC = () => {
+  const { scrollAmount, setScrollAmount, postAmount, setPostAmount } =
+    useContext(BlogContext);
 
-export const Posts: React.FC<PostProps> = (props) => {
   const { ref, inView } = useInView({
     threshold: 0.9,
     triggerOnce: true,
@@ -19,14 +16,14 @@ export const Posts: React.FC<PostProps> = (props) => {
   console.log("Posts");
 
   const { data, isLoading, error } = UseFetch<number, Post[]>(
-    `https://jsonplaceholder.typicode.com/posts?_limit=${props.postAmount}`,
-    props.postAmount
+    `https://jsonplaceholder.typicode.com/posts?_limit=${postAmount}`,
+    postAmount
   );
 
   useEffect(() => {
-    if (props.scrollAmount < 4 && inView) {
-      props.setPostAmount((prevState) => prevState + 10);
-      props.setScrollAmount((prevState) => prevState + 1);
+    if (scrollAmount < 4 && inView) {
+      setPostAmount((prevState) => prevState + 10);
+      setScrollAmount((prevState) => prevState + 1);
     }
   }, [inView]);
 
@@ -35,7 +32,7 @@ export const Posts: React.FC<PostProps> = (props) => {
       {error && <div>Could not fetch the data</div>}
       {isLoading && <div>is Loading...</div>}
       <div className="Posts">
-        {typeof data !== "undefined" ? (
+        {data !== null ? (
           data.map((e: Post, i: number) => {
             return (
               <Link to={`/post/${e.id}`}>
