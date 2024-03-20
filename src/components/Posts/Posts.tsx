@@ -1,9 +1,10 @@
 import { useContext, useEffect } from "react";
-import { UseFetch } from "../hooks/useFetch";
+import { UseFetch } from "../../hooks/useFetch";
 import { useInView } from "react-intersection-observer";
 import { Link } from "react-router-dom";
-import { Post } from "../../types";
-import { BlogContext } from "../App";
+import { Post } from "../../../types";
+import { BlogContext } from "../../context/BlogContext";
+import styles from "./Posts.module.scss";
 
 export const Posts: React.FC = () => {
   const { scrollAmount, setScrollAmount, postAmount, setPostAmount } =
@@ -31,13 +32,13 @@ export const Posts: React.FC = () => {
     <>
       {error && <div>Could not fetch the data</div>}
       {isLoading && <div>is Loading...</div>}
-      <div className="Posts">
+      <div className={styles.Posts}>
         {data !== null ? (
           data.map((e: Post, i: number) => {
             return (
               <Link to={`/post/${e.id}`}>
-                <div className="Post" key={e.id} ref={ref}>
-                  <h1>{e.id} </h1>
+                <div className={styles.Post} key={e.id} ref={ref}>
+                  <h4>Post number {e.id} </h4>
                   <p>{e.title}</p>
                   <p>{e.body}</p>
                 </div>

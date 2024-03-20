@@ -1,12 +1,18 @@
 .App {
+  background-image: url(../src/assets/img/backg.png);
+  min-height: 435px;
+  opacity: 0.9;
+}
+
+.container{
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 70vw;
+  justify-content:center;
   margin: 0 auto;
+  width: 60vw;
+  background-color: rgb(247, 247, 247);
 }
-
 
 .App-header {
   min-height: 0vh;
