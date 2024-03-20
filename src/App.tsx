@@ -1,25 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useContext, createContext } from "react";
+import "./App.css";
+import { Posts } from "./components/Posts";
+import { ShowMoreButton } from "./components/ShowMoreButton";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { Post } from "./components/Post/Post";
+export const MyContext: React.Context<{}> = createContext({});
 
 function App() {
+  const [scrollAmount, setScrollAmount] = useState<number>(0);
+  const [postAmount, setPostAmount] = useState<number>(10);
+
+  console.log("App");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MyContext.Provider value={{}}>
+      <div className="App">
+        <BrowserRouter>
+          <header className="App-header">
+            <h2>Posts</h2>
+          </header>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Posts
+                  scrollAmount={scrollAmount}
+                  setScrollAmount={setScrollAmount}
+                  postAmount={postAmount}
+                  setPostAmount={setPostAmount}
+                />
+              }
+            />
+            <Route path="/post/:id" element={<Post />} />
+          </Routes>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  {scrollAmount >= 4 ? (
+                    <ShowMoreButton setPostAmount={setPostAmount} />
+                  ) : (
+                    <> </>
+                  )}
+                </>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </MyContext.Provider>
   );
 }
 
