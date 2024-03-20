@@ -9,14 +9,13 @@ export const Post: React.FC = () => {
   const { data } = UseFetch<number, PostT>(
     `https://jsonplaceholder.typicode.com/posts/${id}`
   );
-  console.log(data);
 
   return (
     <>
       {data !== null ? (
         <div className={styles.Post}>
           <h3>{data.id}</h3>
-          <p>{data.title}</p>
+          <p className={styles.description}>{data.title}</p>
           <p>{data.body}</p>
         </div>
       ) : (

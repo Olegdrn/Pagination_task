@@ -6,8 +6,6 @@ import { Post } from "./components/Post/Post";
 import { BlogContextProvider } from "./context/BlogContext";
 
 function App() {
-  console.log("App");
-
   return (
     <BlogContextProvider>
       <div className="App">
@@ -18,7 +16,7 @@ function App() {
                 path="/"
                 element={
                   <header className="App-header">
-                    <h4>Posts</h4>
+                    <h4>Posts List</h4>
                   </header>
                 }
               />

@@ -14,7 +14,6 @@ export const Posts: React.FC = () => {
     threshold: 0.9,
     triggerOnce: true,
   });
-  console.log("Posts");
 
   const { data, isLoading, error } = UseFetch<number, Post[]>(
     `https://jsonplaceholder.typicode.com/posts?_limit=${postAmount}`,
@@ -38,9 +37,8 @@ export const Posts: React.FC = () => {
             return (
               <Link to={`/post/${e.id}`}>
                 <div className={styles.Post} key={e.id} ref={ref}>
-                  <h4>Post number {e.id} </h4>
+                  <h4>Post #{e.id} </h4>
                   <p>{e.title}</p>
-                  <p>{e.body}</p>
                 </div>
               </Link>
             );

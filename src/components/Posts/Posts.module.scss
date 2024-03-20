@@ -1,11 +1,12 @@
-$main_bright_color: #e9b1b9;
+$main_bright_color: #fdc5cd;
 $add_backg_color: #F8F3F4;
 
+
 .Post{
-  margin:20px 30px;
+  margin:0 30px;
   cursor: pointer;
   border-radius: 20px;
-  
+  padding: 5px;
 }
 
 .Post:hover{
@@ -13,12 +14,7 @@ background-color: $main_bright_color;
 scale: 1.05;
 }
 
-.Posts{
-
-}
 .Posts a{
   text-decoration: none;
 }
-h4 {
- font-family:  "Droid Sans";
-}
+

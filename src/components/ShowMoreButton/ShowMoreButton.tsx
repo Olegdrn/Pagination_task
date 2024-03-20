@@ -4,7 +4,7 @@ import styles from "./ShowMoreButton.module.scss";
 
 export const ShowMoreButton: React.FC = () => {
   const { scrollAmount, setPostAmount } = useContext(BlogContext);
-  console.log("Button");
+
   return (
     <>
       {scrollAmount >= 4 ? (
